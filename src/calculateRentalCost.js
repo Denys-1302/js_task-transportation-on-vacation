@@ -5,15 +5,23 @@
  */
 function calculateRentalCost(days) {
   // write code here
-  const rentDay = 40;
+  const COST_PER_DAY = 40;
+  const LONG_TERM_DAYS_THRESHOLD = 7;
+  const LONG_TERM_DISCOUNT = 50;
+  const MEDIUM_TERM_DAYS_THRESHOLD = 3;
+  const MEDIUM_TERM_DISCOUNT = 20;
 
-  if (days >= 3 && days <= 6) {
-    return days * rentDay - 20;
-  } else if (days >= 7) {
-    return days * rentDay - 50;
-  } else {
-    return days * rentDay;
+  const totalCost = days * COST_PER_DAY;
+
+  if (days >= LONG_TERM_DAYS_THRESHOLD) {
+    return totalCost - LONG_TERM_DISCOUNT;
   }
+
+  if (days >= MEDIUM_TERM_DAYS_THRESHOLD) {
+    return totalCost - MEDIUM_TERM_DISCOUNT;
+  }
+
+  return totalCost;
 }
 
 module.exports = calculateRentalCost;
